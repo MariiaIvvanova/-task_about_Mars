@@ -1,4 +1,4 @@
-from flask import Flask, url_for
+from flask import Flask, url_for, render_template
 
 app = Flask(__name__)
 
@@ -25,6 +25,13 @@ def promotion_img():
 def astronaut_selection():
     with open("astronaut_selection.html", "r", encoding="utf-8") as html_file:
         return html_file.read()
+
+
+@app.route("/choice/<planet_name>")
+def choice(planet_name):
+    return render_template("choice.html", planet_name=planet_name)
+
+
 
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
